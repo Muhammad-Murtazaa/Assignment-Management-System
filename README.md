@@ -1,6 +1,11 @@
+## Group Project Contributors
+Muhammad Murtaza
+Farzan-ul-Haq
+Sufiyan Nasir
+Syed Muhammad Ghazi
+
 ## Installation
-`If you are not familiar with README.md format.
-Go to Source Code https://github.com/Farzan-ul-haq/AMS` 
+`If you are not familiar with README.md format. 
 Install Dependencies
 ```
 pip install -r requirements.txt
