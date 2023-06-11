@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block Body %}
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+{% load custom_tags %}
+
+
+<h1>{{quiz.1}}({{quiz.2}})</h1>
+<a href="{% url 'quiz:delete' course_id quiz_id %}">
+    <button>Delete Quiz</button> 
+</a><br><br>
+<a href="{% url 'quiz:question:create' course_id quiz_id 'MCQs' %}">
+    <button>Add Question(MCQs)</button> 
+</a>
+<a href="{% url 'quiz:question:create' course_id quiz_id 'Blank' %}">
+    <button>Add Question(Blank)</button> 
+</a>
+<a href="{% url 'quiz:question:create' course_id quiz_id 'T&F' %}">
+    <button>Add Question(T&F)</button> 
+</a>
+<br><br>
+{% for question in questions %}
+<p><b>Q{{question.0}}): {{question.1}}</b> (<a href="{% url 'quiz:question:update' course_id quiz_id question.0 %}">Edit</a> | <a href="{% url 'quiz:question:delete' course_id quiz_id question.0 %}">Delete</a>)</p>
+    {% if question.2 == 'MCQS' %}
+        {% for choice in choices|get_item:question.0  %}
+            <p>&emsp; <b>{{choice.3}}:</b> {{choice.1}}</p>
+        {% endfor %}
+    {% endif %}
+<p><b>Answer:</b> {{question.4}}</p>
+<hr>
+{% endfor %}
+<hr>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>SCORE</th>
+    </tr>
+    {% for st in students %}
+    <tr>
+        <td>{{st.0}}</td>
+        <td>{{st.1}}</td>
+        <td>{%if st.2 %} {{st.2}}% {% else %} Not Attempt {% endif %}</td>
+    </tr>
+    {% endfor %}
+</table>
+<hr>
+{% endblock %}

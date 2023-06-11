@@ -1,0 +1,26 @@
+<h1>TF Question</h1>
+
+<form action="." method="POST">{% csrf_token %}
+    <label for="question">Question: </label>
+    <input type="text" id="question" name="question" value="{{question.1}}">
+    <br>
+    <br>
+    <label for="">Answer:</label>
+    {% if question.4 == 'T' %}
+    <input type="radio" name="answer" id="T" value='T' checked><label for="T">True</label>
+    <input type="radio" name="answer" id="F" value='F'><label for="F">False</label>
+    {% elif question.4 == 'F' %}
+    <input type="radio" name="answer" id="T" value='T'><label for="T">True</label>
+    <input type="radio" name="answer" id="F" value='F' checked><label for="F">False</label>
+    {% else %}
+    <input type="radio" name="answer" id="T" value='T' checked><label for="T">True</label>
+    <input type="radio" name="answer" id="F" value='F'><label for="F">False</label>
+    {% endif %}
+    <br>
+    <br>
+    {% if create %}
+    <input type="submit" value="Create Question">
+    {% elif update %}
+    <input type="submit" value="Update Question">
+    {% endif %}
+</form>

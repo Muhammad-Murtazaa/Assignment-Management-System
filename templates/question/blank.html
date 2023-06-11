@@ -1,0 +1,17 @@
+<h1>Blank Question</h1>
+
+<form action="." method="POST">{% csrf_token %}
+    <label for="question">Question: </label>
+    <input type="text" id="question" name="question" value="{{question.1}}">
+    <br>
+    <br>
+    <label for="answer">Answer: </label>
+    <input type="text" id="answer" name="answer" value="{{question.4}}">
+    <br>
+    <br>
+    {% if create %}
+    <input type="submit" value="Create Question">
+    {% elif update %}
+    <input type="submit" value="Update Question">
+    {% endif %}
+</form>

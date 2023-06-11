@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block Body %}
+<h1>Create Quiz</h1>
+<form action="." method="post">{%csrf_token%}
+<span>Title:</span> <input type="text" name="name"><br><br>
+<button type="submit"> Create Quiz </button>
+</form>
+{% endblock %}

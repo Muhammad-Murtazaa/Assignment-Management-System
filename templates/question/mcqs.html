@@ -1,0 +1,28 @@
+<h1>MCQs Question</h1>
+
+<form action="." method="POST">{% csrf_token %}
+    <label for="question">Question: </label>
+    <input type="text" id="question" name="question" value="{{question.1}}">
+    <br>
+    <br>
+    <label for="">Choices:</label><br><br>
+    {% if create %}
+    A: <input type="text" name="choice"><br><br>
+    B: <input type="text" name="choice"><br><br>
+    C: <input type="text" name="choice"><br><br>
+    D: <input type="text" name="choice"><br><br>
+    {% elif update %}
+        {% for choice in choices %}
+            {{choice.3}}: <input type="text" name="choice" value="{{choice.1}}" disabled><br><br>
+        {% endfor %}
+    {% endif %}
+
+    <label for="">Answer:</label>
+    <input type="text" id="answer" name="answer" value="{{question.4}}">(Add Order no in Answer)
+    <br><br>
+    {% if create %}
+    <input type="submit" value="Create Question">
+    {% elif update %}
+    <input type="submit" value="Update Question">
+    {% endif %}
+</form>

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block Body %}
+<h1> Quiz({{course_id}})</h1>
+
+{% for quiz in quizes %}
+    {% if user_type == 'teacher' %}
+        <a href='{% url "quiz:detail" course_id quiz.0 %}' >{{quiz.1}}</a>
+    {% else %}
+        <a href='{% url "quiz:submit" course_id quiz.0 %}' >
+            {{quiz.1}}<b>
+                {% if quiz.3 %}
+                    ({{quiz.3}}%)
+                {% endif %}
+            </b></a>
+    {% endif %}
+    <br><br>
+{% endfor %}
+
+{% if user_type == 'teacher' %}
+<a href="{% url 'quiz:create' course_id %}"><button>Create Quiz</button></a>
+{% endif %}
+
+{% endblock %}

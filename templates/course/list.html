@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block Body %}
+<h1> Courses List</h1>
+
+{% for course in courses %}
+    <a href='{% url "quiz:list" course.0 %}' >{{course.1}}({{course.0}})</a>
+    <br><br>
+{% endfor %}
+
+{% endblock %}

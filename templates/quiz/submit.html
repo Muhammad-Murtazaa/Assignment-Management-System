@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block Body %}
+<style>
+table, th, td {
+  border:1px solid black;
+}
+</style>
+{% load custom_tags %}
+
+
+<h1>{{quiz.1}}({{quiz.2}})</h1>
+<br><br>
+<form action="." method="post"> {% csrf_token %}
+    {% for question in questions %}
+    <p><b>Q{{question.0}}): {{question.1}}</b> </p>
+        {% if question.2 == 'MCQS' %}
+            {% for choice in choices|get_item:question.0  %}
+                <input type="radio" name="answer_q{{question.0}}" id="choice_{{choice.3}}" value="{{choice.3}}">
+                <label for="choice_{{choice.3}}">{{choice.1}}</label>
+                <br>
+            {% endfor %}
+        {% elif question.2 == 'BLANK' %}
+            Answer: <input type="text" name="answer_q{{question.0}}">
+            <br><br>
+        {% elif question.2 == 'TF' %}
+            <input type="radio" name="answer_q{{question.0}}" id="T_{{question.0}}" value="T">
+            <label for="T_{{question.0}}">True</label>
+            <input type="radio" name="answer_q{{question.0}}" id="F_{{question.0}}" value="F">
+            <label for="F_{{question.0}}">False</label>
+            <br>
+        {% endif %}
+    <hr>
+    {% endfor %}
+    <br>
+    <input type="submit" value="SUbmit Quiz">
+</form>
+
+    {% endblock %}
